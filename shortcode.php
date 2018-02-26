@@ -1,14 +1,11 @@
-<?php
-function youtube($atts) {
-	extract(shortcode_atts(array(
-		"value" => 'http://',
-		"width" => '475',
-		"height" => '350',
-		"name"=> 'movie',
-		"allowFullScreen" => 'true',
-		"allowScriptAccess"=>'always',
-		"controls"=> '1',
-	), $atts));
-	return '<object style="height: '.$height.'px; width: '.$width.'px"><param name="'.$name.'" value="'.$value.'"><param name="allowFullScreen" value="'.$allowFullScreen.'"><param name="allowScriptAccess" value="'.$allowScriptAccess.'"><embed src="'.$value.'" type="application/x-shockwave-flash" allowfullscreen="'.$allowFullScreen.'" allowScriptAccess="'.$allowScriptAccess.'" width="'.$width.'" height="'.$height.'"></object>';
+// Example 3 : WP Shortcode to share post or page on Twitter.
+function ink_wp_shortcode($atts, $content=null)
+{
+$post_url = get_permalink($post->ID);
+$post_title = get_the_title($post->ID);
+$tweet = '<a style="color:blue; font-size: 20px;" href="http://twitter.com/home/?status=Read' . $post_title . 'at' . $post_url . '">
+<b>Share on Twitter </b></a>';
+return $tweet;
 }
-add_shortcode("youtube", "youtube");
+add_shortcode('twitter', 'ink_wp_shortcode');
+?>
